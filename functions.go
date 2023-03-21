@@ -24,11 +24,25 @@ func add(args ...int) int {
 	fmt.Println(total)
 	return total
 }
+
+func makeEven() func() uint {
+	i := uint(0)
+	return func() (ret uint) {
+		ret = i // this is 0
+		i += 2
+		return ret
+	}
+}
 	
 
 func main() {
 	theSlice := []int{1,2,3,4,5,6,7,8,9,10}
 	averageNums(theSlice)
 	add(theSlice...)
+	theNext := makeEven()
+	fmt.Println(theNext())
+	fmt.Println(theNext())
+	fmt.Println(theNext())
 
-}
+
+	}
